@@ -38,10 +38,12 @@ class CpuFlags(object):
             raise ValueError("Value must be 8 bit long")
 
         for index, key in enumerate(self._flag_data.keys()):
-            self._flag_data[key] = (value << index) & 1
+            self._flag_data[key] = bool(value >> index & 1)
+
+        return self.get_byte()
             
     def reset_flags(self):
         for key in self._flag_data.keys():
-            self._flag_data[key] = 0
+            self._flag_data[key] = False
 
         return self.get_byte()
