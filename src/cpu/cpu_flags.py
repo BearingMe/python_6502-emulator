@@ -40,3 +40,8 @@ class CpuFlags(object):
         for index, key in enumerate(self._flag_data.keys()):
             self._flag_data[key] = (value << index) & 1
             
+    def reset_flags(self):
+        for key in self._flag_data.keys():
+            self._flag_data[key] = 0
+
+        return self.get_byte()
