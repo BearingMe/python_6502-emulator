@@ -5,11 +5,17 @@ description = "MOS 6502 Emulator"
 authors = ["Smith"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "python_6502"}]
+packages = [{include = "../python_6502"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 
+[tool.poetry.scripts]
+test = "scripts:test"
+dev = "scripts:dev"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
 
 [build-system]
 requires = ["poetry-core"]
