@@ -28,8 +28,8 @@ class CpuFlags(object):
     def get_byte(self):
         accumulator = 0x00
 
-        for bits in self._flag_data.values():
-            accumulator |= bits
+        for index, value in enumerate(self._flag_data.values()):
+            accumulator |= (value << index)
 
         return accumulator
 
