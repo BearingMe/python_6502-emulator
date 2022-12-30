@@ -19,7 +19,7 @@ class CpuFlags(object):
         return self._flag_data[flag_key]
 
     def set_bit(self, flag_key: str, flag_value: bool):
-        if not flag_key not in self._flag_data:
+        if flag_key not in self._flag_data:
             raise ValueError("Invalid key")
         
         self._flag_data[flag_key] = flag_value
