@@ -1,23 +1,37 @@
 class AddressingModes:
-    def _fetch_argument(self):
+    def _fetch_argument(self) -> int:
+        """
+        Reads a single byte value from the address pointed to by self.pc and increments self.pc by 1. It returns the byte value that was read.
+        """
         operand = self.read(self.pc)
         self.pc += 1
 
         return operand
 
-    def _fetch_instruction(self):
+    def _fetch_instruction(self) -> tuple:
+        """
+        Reads two bytes from the address pointed to by self.pc and increments self.pc by 2. It returns the two bytes as a tuple in the order (high_byte, low_byte).
+        """
         lo = self._fetch_argument()
         hi = self._fetch_argument()
 
         return hi, lo
 
     def _check_page_boundary_cross(self, address: int, hi: int) -> int:
+        """
+        Checks if the page boundary was crossed when calculating the address. 
+        
+        Returns 1 if the page boundary was crossed, and 0 otherwise.
+        """
         if (address & 0xFF00) != (hi << 8):
             return 1
         
         return 0
 
-    def _join_high_low_bytes(self, high_byte, low_byte):
+    def _join_high_low_bytes(self, high_byte, low_byte) -> int:
+        """
+        Takes a high byte and a low byte as arguments and combines them to form a single 16-bit value. It returns the combined value.
+        """
         return ((high_byte << 8) | low_byte)
 
     def ABS(self) -> int:
