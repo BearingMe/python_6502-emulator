@@ -1,6 +1,6 @@
 import unittest
 
-from src.cpu.addressing_modes import AddressingModes
+from src.cpu.old_addressing_modes import AddressingModes
 
 class TestCpuFlags(unittest.TestCase):
     def setUp(self):
