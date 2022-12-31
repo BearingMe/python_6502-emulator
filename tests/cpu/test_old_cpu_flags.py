@@ -1,6 +1,6 @@
 import unittest
 
-from src.cpu.cpu_flags import CpuFlags
+from src.cpu.old_cpu_flags import CpuFlags
 
 class TestCpuFlags(unittest.TestCase):
     def setUp(self):
