@@ -1,27 +1,21 @@
 from typing import Dict
 
 class CpuState:
-    _registers: Dict[str, int] = {
-        "A": 0x00, # 8-bit accumulator
-        "X": 0x00, # 8-bit x register
-        "Y": 0x00, # 8-bit y register
-        "SP": 0x00, # 8-bit stack pointer
-        "Status": 0x00, # 8-bit processor status
-        "PC": 0x0000 # 16-bit processor counter
-    }
+    def __init__(self):
+        self._registers: Dict[str, int] = {
+            "A": 0x00, # 8-bit accumulator
+            "X": 0x00, # 8-bit x register
+            "Y": 0x00, # 8-bit y register
+            "SP": 0x00, # 8-bit stack pointer
+            "Status": 0x00, # 8-bit processor status
+            "PC": 0x0000 # 16-bit processor counter
+        }
 
-    cycles = 0
-    fetched = 0x00
-    addr_abs = 0x0000
-    addr_rel = 0x0000
-    opcode = 0x00
-
-    def _check_value_size(self, value, bits):
-        if value >= 2**bits or value < 0:
-            raise ValueError(f"{value} is not a {bits}-bit value")
-
-    def _set_register_value(self, register, value, bits):
-        self._registers[register] = value & 2**bits - 1
+        self.cycles = 0
+        self.fetched = 0x00
+        self.addr_abs = 0x0000
+        self.addr_rel = 0x0000
+        self.opcode = 0x00
 
     @property
     def a(self):
@@ -88,3 +82,10 @@ class CpuState:
         self._set_register_value("PC", value, bits=16)
 
         return self._registers["PC"]
+
+    def _check_value_size(self, value, bits):
+        if not (0 <= value < 2**bits):
+            raise ValueError(f"{value} is not a {bits}-bit value")
+
+    def _set_register_value(self, register, value, bits):
+        self._registers[register] = value & 2**bits - 1
