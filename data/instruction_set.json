@@ -1,0 +1,1538 @@
+[
+  {
+    "instruction": "BRK",
+    "operation": "BRK",
+    "addressing_mode": "IMM",
+    "cycles": 7
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "ASL",
+    "operation": "ASL",
+    "addressing_mode": "ZP0",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "PHP",
+    "operation": "PHP",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "ASL",
+    "operation": "ASL",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "ASL",
+    "operation": "ASL",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "BPL",
+    "operation": "BPL",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "ASL",
+    "operation": "ASL",
+    "addressing_mode": "ZPX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "CLC",
+    "operation": "CLC",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "ORA",
+    "operation": "ORA",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "ASL",
+    "operation": "ASL",
+    "addressing_mode": "ABX",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "JSR",
+    "operation": "JSR",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "BIT",
+    "operation": "BIT",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "ROL",
+    "operation": "ROL",
+    "addressing_mode": "ZP0",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "PLP",
+    "operation": "PLP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "ROL",
+    "operation": "ROL",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "BIT",
+    "operation": "BIT",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "ROL",
+    "operation": "ROL",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "BMI",
+    "operation": "BMI",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "ROL",
+    "operation": "ROL",
+    "addressing_mode": "ZPX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "SEC",
+    "operation": "SEC",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "AND",
+    "operation": "AND",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "ROL",
+    "operation": "ROL",
+    "addressing_mode": "ABX",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "RTI",
+    "operation": "RTI",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "LSR",
+    "operation": "LSR",
+    "addressing_mode": "ZP0",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "PHA",
+    "operation": "PHA",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "LSR",
+    "operation": "LSR",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "JMP",
+    "operation": "JMP",
+    "addressing_mode": "ABS",
+    "cycles": 3
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "LSR",
+    "operation": "LSR",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "BVC",
+    "operation": "BVC",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "LSR",
+    "operation": "LSR",
+    "addressing_mode": "ZPX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "CLI",
+    "operation": "CLI",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "EOR",
+    "operation": "EOR",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "LSR",
+    "operation": "LSR",
+    "addressing_mode": "ABX",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "RTS",
+    "operation": "RTS",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "ROR",
+    "operation": "ROR",
+    "addressing_mode": "ZP0",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "PLA",
+    "operation": "PLA",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "ROR",
+    "operation": "ROR",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "JMP",
+    "operation": "JMP",
+    "addressing_mode": "IND",
+    "cycles": 5
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "ROR",
+    "operation": "ROR",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "BVS",
+    "operation": "BVS",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "ROR",
+    "operation": "ROR",
+    "addressing_mode": "ZPX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "SEI",
+    "operation": "SEI",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "ADC",
+    "operation": "ADC",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "ROR",
+    "operation": "ROR",
+    "addressing_mode": "ABX",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "STY",
+    "operation": "STY",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "STX",
+    "operation": "STX",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "DEY",
+    "operation": "DEY",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "TXA",
+    "operation": "TXA",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "STY",
+    "operation": "STY",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "STX",
+    "operation": "STX",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "BCC",
+    "operation": "BCC",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "IZY",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "STY",
+    "operation": "STY",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "STX",
+    "operation": "STX",
+    "addressing_mode": "ZPY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "TYA",
+    "operation": "TYA",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "ABY",
+    "cycles": 5
+  },
+  {
+    "instruction": "TXS",
+    "operation": "TXS",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "STA",
+    "operation": "STA",
+    "addressing_mode": "ABX",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "LDY",
+    "operation": "LDY",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "LDX",
+    "operation": "LDX",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "LDY",
+    "operation": "LDY",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "LDX",
+    "operation": "LDX",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 3
+  },
+  {
+    "instruction": "TAY",
+    "operation": "TAY",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "TAX",
+    "operation": "TAX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "LDY",
+    "operation": "LDY",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDX",
+    "operation": "LDX",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "BCS",
+    "operation": "BCS",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "LDY",
+    "operation": "LDY",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDX",
+    "operation": "LDX",
+    "addressing_mode": "ZPY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "CLV",
+    "operation": "CLV",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "TSX",
+    "operation": "TSX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDY",
+    "operation": "LDY",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDA",
+    "operation": "LDA",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "LDX",
+    "operation": "LDX",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "CPY",
+    "operation": "CPY",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "CPY",
+    "operation": "CPY",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "DEC",
+    "operation": "DEC",
+    "addressing_mode": "ZP0",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "INY",
+    "operation": "INY",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "DEX",
+    "operation": "DEX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "CPY",
+    "operation": "CPY",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "DEC",
+    "operation": "DEC",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "BNE",
+    "operation": "BNE",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "DEC",
+    "operation": "DEC",
+    "addressing_mode": "ZPX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "CLD",
+    "operation": "CLD",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "NOP",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "CMP",
+    "operation": "CMP",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "DEC",
+    "operation": "DEC",
+    "addressing_mode": "ABX",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "CPX",
+    "operation": "CPX",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "IZX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "CPX",
+    "operation": "CPX",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "ZP0",
+    "cycles": 3
+  },
+  {
+    "instruction": "INC",
+    "operation": "INC",
+    "addressing_mode": "ZP0",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 5
+  },
+  {
+    "instruction": "INX",
+    "operation": "INX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "IMM",
+    "cycles": 2
+  },
+  {
+    "instruction": "NOP",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "SBC",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "CPX",
+    "operation": "CPX",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "ABS",
+    "cycles": 4
+  },
+  {
+    "instruction": "INC",
+    "operation": "INC",
+    "addressing_mode": "ABS",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "BEQ",
+    "operation": "BEQ",
+    "addressing_mode": "REL",
+    "cycles": 2
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "IZY",
+    "cycles": 5
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 8
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "ZPX",
+    "cycles": 4
+  },
+  {
+    "instruction": "INC",
+    "operation": "INC",
+    "addressing_mode": "ZPX",
+    "cycles": 6
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 6
+  },
+  {
+    "instruction": "SED",
+    "operation": "SED",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "ABY",
+    "cycles": 4
+  },
+  {
+    "instruction": "NOP",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 2
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "NOP",
+    "addressing_mode": "IMP",
+    "cycles": 4
+  },
+  {
+    "instruction": "SBC",
+    "operation": "SBC",
+    "addressing_mode": "ABX",
+    "cycles": 4
+  },
+  {
+    "instruction": "INC",
+    "operation": "INC",
+    "addressing_mode": "ABX",
+    "cycles": 7
+  },
+  {
+    "instruction": "???",
+    "operation": "XXX",
+    "addressing_mode": "IMP",
+    "cycles": 7
+  }
+]
