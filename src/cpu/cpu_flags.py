@@ -13,6 +13,14 @@ class CpuFlags:
             "N": 0, # negative
         }
 
+    def __repr__(self) -> str:
+        return f"N:{self.N}, " +\
+               f"V:{self.V}, " +\
+               f"D:{self.D}, " +\
+               f"I:{self.I}, " +\
+               f"Z:{self.Z}, " +\
+               f"C:{self.C}"
+
     @property
     def C(self) -> int:
         return int(self._flags.get("C"))
@@ -56,56 +64,48 @@ class CpuFlags:
 
     @C.setter
     def C(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("C", value)
 
         return self.C
 
     @Z.setter
     def Z(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("Z", value)
 
         return self.Z
 
     @I.setter
     def I(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("I", value)
 
         return self.I
     
     @D.setter
     def D(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("D", value)
 
         return self.D
 
     @B.setter
     def B(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("B", value)
 
         return self.B
 
     @U.setter
     def U(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("U", value)
 
         return self.U
 
     @V.setter
     def V(self, value: int) -> int: 
-        self._check_value_size(value)
         self._set_flag_value("V", value)
 
         return self.V
 
     @N.setter
     def N(self, value: int) -> int:
-        self._check_value_size(value)
         self._set_flag_value("N", value)
 
         return self.N
@@ -126,5 +126,5 @@ class CpuFlags:
         if not (0 <= value < 2**bits):
             raise ValueError(f"{value} is not a {bits}-bit value")
 
-    def _set_flag_value(self, flag, value):
-        self._flags[flag] = value & 1
+    def _set_flag_value(self, flag, value): 
+        self._flags[flag] = bool(value)
