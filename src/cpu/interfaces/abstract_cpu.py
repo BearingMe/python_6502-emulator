@@ -13,14 +13,6 @@ class AbstractCpu(ABC):
         self.state: AbstractStateHandler
 
     @abstractmethod
-    def read(self, address: int) -> int:
-        pass
-
-    @abstractmethod
-    def write(self, address: int, value: int) -> None:
-        pass
-
-    @abstractmethod
     def run(self) -> None:
         pass
 
