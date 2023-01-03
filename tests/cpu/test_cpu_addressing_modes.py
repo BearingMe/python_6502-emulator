@@ -105,50 +105,37 @@ class TestCpuFlags(unittest.TestCase):
         self.assertEqual(self.cpu.state.helper_fetched, 0x01)
         self.assertEqual(self.cpu.state.register_PC, 0x0001)
 
+    # TODO: also test the case where the address is on a page boundary
     def test_IND(self):
-        # TODO: also test the case where the address is on a page boundary
-
-        # Set up some test values
-        self.cpu.bus.read = lambda address: 0xFF if address == 0x0001 else 0x02
+        self.cpu.bus.read = lambda address: [0x00, 0x03, 0x00, 0x10, 0x00][address]
 
         # Call the IND method and check the result
         result = self.addressing_modes.IND()
         self.assertEqual(result, 0)
-        self.assertEqual(self.cpu.state.helper_addr_abs, 0x0202)
-        # self.assertEqual(self.cpu.state.register_PC, 0x0003) TODO: Fix this
-        
+        self.assertEqual(self.cpu.state.helper_addr_abs, 0x0010)
+        self.assertEqual(self.cpu.state.register_PC, 0x0003)
+
     def test_IZX(self):
+        # Set up some test values
+        self.cpu.bus.read = lambda address: [0x00, 0x03, 0x00, 0x00, 0x01, 0x00][address]
+
         # Call the IZX method and check the result
         result = self.addressing_modes.IZX()
         
         self.assertEqual(result, 0)
-        # self.assertEqual(self.cpu.state.helper_addr_abs, 0x0205) TODO: Fix this
-        # self.assertEqual(self.cpu.state.register_PC, 0x0002) TODO: Fix this
+        self.assertEqual(self.cpu.state.helper_addr_abs, 0x0001)
+        self.assertEqual(self.cpu.state.register_PC, 0x0002)
 
+    def test_IZY(self):
+        # Set up some test values
+        self.cpu.bus.read = lambda address: [0x00, 0x03, 0x00, 0x10, 0x00][address]
 
-    # def test_IZY_no_boundary_cross(self):
-    #     # Set up some test values
-    #     self.addressing_modes.y = 0x01
-    #     self.addressing_modes.pc = 0x0001
-    #     self.addressing_modes.read = lambda address: 0x01 if address == 0x0001 else 0x02
+        # Call the IZY method and check the result
+        result = self.addressing_modes.IZY()
 
-    #     # Call the IZY method and check the result
-    #     result = self.addressing_modes.IZY()
-    #     self.assertEqual(result, 0)
-    #     self.assertEqual(self.addressing_modes.addr_abs, 0x0202)
-    #     self.assertEqual(self.addressing_modes.pc, 0x0002)
-
-    # def test_IZY_boundary_cross(self):
-    #     # Set up some test values
-    #     self.addressing_modes.y = 0xFF
-    #     self.addressing_modes.pc = 0x0001
-    #     self.addressing_modes.read = lambda address: 0xFF if address == 0x0001 else 0x02
-
-    #     # Call the IZY method and check the result
-    #     result = self.addressing_modes.IZY()
-    #     self.assertEqual(result, 1)
-    #     self.assertEqual(self.addressing_modes.addr_abs, 0x0301)
-    #     self.assertEqual(self.addressing_modes.pc, 0x0002)
+        self.assertEqual(result, 0)
+        self.assertEqual(self.cpu.state.helper_addr_abs, 0x0011)
+        self.assertEqual(self.cpu.state.register_PC, 0x0002)
 
 
     def test_REL(self):
