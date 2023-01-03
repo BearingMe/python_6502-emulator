@@ -4,23 +4,23 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
     def __init__(self, cpu):
         self.cpu = cpu
 
-    def _read_byte(self, address: int) -> int:
+    def _read_byte(self, address: int, increment: bool = True) -> int:
         """
         Reads a single byte value from the address pointed to by program counter
         Increments program counter by 1
         """
         operand = self.cpu.bus.read(address)
-        self.cpu.state.register_PC += 1
+        self.cpu.state.register_PC += (1 if increment else 0)
 
         return operand
 
-    def _read_word(self, address: int) -> tuple:
+    def _read_word(self, address: int, increment: bool = True) -> tuple:
         """
         Reads a word value from the address pointed to by program counter
         Increments program counter by 2
         """
-        low_byte = self._read_byte(address)
-        high_byte = self._read_byte(address + 1)
+        low_byte = self._read_byte(address, increment)
+        high_byte = self._read_byte(address + 1, increment)
 
         return low_byte, high_byte
 
@@ -93,7 +93,6 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
 
         return 0
 
-    # TODO: Double check this
     def IND(self) -> int:
         """
         Indirect addressing mode
@@ -108,13 +107,12 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
 
         pointer = (pointer_high_byte << 8) | pointer_low_byte
 
-        low_byte, high_byte = self._read_word(pointer)
+        low_byte, high_byte = self._read_word(pointer, increment=False)
 
         self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
 
         return 0
 
-    # TODO: check if program counter is correctly incremented
     def IZX(self) -> int:
         """
         Indirect addressing mode with X offset
@@ -122,25 +120,27 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         """
         pointer = self._read_byte(self.cpu.state.register_PC)
         pointer += self.cpu.state.register_X
+        pointer &= 0x00FF
 
-        low_byte, high_byte = self._read_word(pointer & 0x00FF)
+        low_byte, high_byte = self._read_word(pointer, increment=False)
 
         self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
 
         return 0
 
-    # TODO: check if program counter is correctly incremented
     def IZY(self) -> int:
         """
         Indirect addressing mode with Y offset
         Access memory using a pointer + Y register offset
         """
         pointer = self._read_byte(self.cpu.state.register_PC)
+        pointer &= 0x00FF
 
-        low_byte, high_byte = self._read_word(pointer & 0x00FF)
+        low_byte, high_byte = self._read_word(pointer, increment=False)
 
         self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
         self.cpu.state.helper_addr_abs += self.cpu.state.register_Y
+        self.cpu.state.helper_addr_abs &= 0xFFFF
 
         has_crossed_boundary = self._check_page_boundary(self.cpu.state.helper_addr_abs, high_byte)
 
@@ -168,6 +168,8 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Used to access memory at a specific address
         """
         self.cpu.state.helper_addr_abs = self._read_byte(self.cpu.state.register_PC)
+
+        self.cpu.state.helper_addr_abs &= 0x00FF
 
         return 0
 
