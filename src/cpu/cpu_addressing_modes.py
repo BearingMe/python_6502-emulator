@@ -1,8 +1,9 @@
-from src.cpu.interfaces.abstract_cpu_addressing_modes import AbstractCpuAddressingModes
+from .interfaces.abstract_cpu_addressing_modes import AbstractCpuAddressingModes
+from .interfaces.abstract_cpu import AbstractCpu
 
 class CpuAddressingModes(AbstractCpuAddressingModes):
     def __init__(self, cpu):
-        self.cpu = cpu
+        self.cpu: AbstractCpu = cpu
 
     def _read_byte(self, address: int, increment: bool = True) -> int:
         """

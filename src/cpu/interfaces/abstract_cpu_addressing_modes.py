@@ -1,10 +1,6 @@
 from abc import ABC, abstractmethod
-from .abstract_cpu import AbstractCpu
 
 class AbstractCpuAddressingModes(ABC):
-    def __init__(self, cpu: AbstractCpu):
-        self.cpu: AbstractCpu = cpu
-
     @abstractmethod
     def ABS(self) -> int:
         pass

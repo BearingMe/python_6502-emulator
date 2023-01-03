@@ -1,10 +1,6 @@
 from abc import ABC, abstractmethod
-from .abstract_cpu import AbstractCpu
 
 class AbstractCpuInstructions(ABC):
-    def __init__(self, cpu: AbstractCpu):
-        self.cpu: AbstractCpu = cpu
-
     @abstractmethod
     def ADC(self) -> int:
         pass
