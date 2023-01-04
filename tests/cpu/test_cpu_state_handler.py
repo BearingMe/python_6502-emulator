@@ -65,60 +65,60 @@ class TestCpuFlags(unittest.TestCase):
 
     def test_helpers(self):
         # Set the helper address absolute value and check the result
-        self.state_handler.helper_addr_abs = 0xF0F0
-        self.assertEqual(self.state_handler.helper_addr_abs, 0xF0F0)
+        self.state_handler.addr_abs = 0xF0F0
+        self.assertEqual(self.state_handler.addr_abs, 0xF0F0)
 
         # Set the helper address relative value and check the result
-        self.state_handler.helper_addr_rel = 0x0F0F
-        self.assertEqual(self.state_handler.helper_addr_rel, 0x0F0F)
+        self.state_handler.addr_rel = 0x0F0F
+        self.assertEqual(self.state_handler.addr_rel, 0x0F0F)
 
         # Set the helper fetched value and check the result
-        self.state_handler.helper_fetched = 0xF0F0
-        self.assertEqual(self.state_handler.helper_fetched, 0xF0F0)
+        self.state_handler.fetched = 0xF0F0
+        self.assertEqual(self.state_handler.fetched, 0xF0F0)
 
         # Set the helper cycles value and check the result
-        self.state_handler.helper_cycles = 2 ** 64 - 1
-        self.assertEqual(self.state_handler.helper_cycles, 2 ** 64 - 1)
+        self.state_handler.cycles = 2 ** 64 - 1
+        self.assertEqual(self.state_handler.cycles, 2 ** 64 - 1)
 
         # Set the helper opcode value and check the result
-        self.state_handler.helper_opcode = 0xF0
-        self.assertEqual(self.state_handler.helper_opcode, 0xF0)
+        self.state_handler.opcode = 0xF0
+        self.assertEqual(self.state_handler.opcode, 0xF0)
 
     def test_helpers_with_invalid_value(self):
         # Try to set an invalid helper address absolute value
         with self.assertRaises(ValueError):
-            self.state_handler.helper_addr_abs = 0xFFFF + 1
+            self.state_handler.addr_abs = 0xFFFF + 1
 
         with self.assertRaises(ValueError):
-            self.state_handler.helper_addr_abs = -327
+            self.state_handler.addr_abs = -327
 
         # Try to set an invalid helper address relative value
         with self.assertRaises(ValueError):
-            self.state_handler.helper_addr_rel = 0xFFFF + 1
+            self.state_handler.addr_rel = 0xFFFF + 1
 
         with self.assertRaises(ValueError):
-            self.state_handler.helper_addr_rel = -523
+            self.state_handler.addr_rel = -523
 
         # Try to set an invalid helper fetched value
         with self.assertRaises(ValueError):
-            self.state_handler.helper_fetched = 0xFFFF + 1
+            self.state_handler.fetched = 0xFFFF + 1
 
         with self.assertRaises(ValueError):
-            self.state_handler.helper_fetched = -879
+            self.state_handler.fetched = -879
 
         # Try to set an invalid helper cycles value
         with self.assertRaises(ValueError):
-            self.state_handler.helper_cycles = 0xFFFFFFFFFFFFFFFF + 1
+            self.state_handler.cycles = 0xFFFFFFFFFFFFFFFF + 1
         
         with self.assertRaises(ValueError):
-            self.state_handler.helper_cycles = -455
+            self.state_handler.cycles = -455
 
         # Try to set an invalid helper opcode value
         with self.assertRaises(ValueError):
-            self.state_handler.helper_opcode = 0xFF + 1
+            self.state_handler.opcode = 0xFF + 1
 
         with self.assertRaises(ValueError):
-            self.state_handler.helper_opcode = -654
+            self.state_handler.opcode = -654
 
     def test_register_getters(self):
         """

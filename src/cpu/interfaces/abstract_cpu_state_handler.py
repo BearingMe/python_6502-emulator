@@ -7,6 +7,57 @@ class AbstractCpuStateHandler(ABC):
         self._helpers: Dict[str, int]
         self._registers: Dict[str, int]
 
+    # Helpers
+    @property
+    @abstractmethod
+    def addr_abs(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def addr_rel(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def fetched(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def cycles(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def opcode(self) -> int:
+        pass
+    
+    @addr_abs.setter
+    @abstractmethod
+    def addr_abs(self, value: int) -> None:
+        pass
+
+    @addr_rel.setter
+    @abstractmethod
+    def addr_rel(self, value: int) -> None:
+        pass
+
+    @fetched.setter
+    @abstractmethod
+    def fetched(self, value: int) -> None:
+        pass
+
+    @cycles.setter
+    @abstractmethod
+    def cycles(self, value: int) -> None:
+        pass
+
+    @opcode.setter
+    @abstractmethod
+    def opcode(self, value: int) -> None:
+        pass
+
     # Flags
     @property
     @abstractmethod
@@ -86,57 +137,6 @@ class AbstractCpuStateHandler(ABC):
     @flag_N.setter
     @abstractmethod
     def flag_N(self, value: int) -> None:
-        pass
-
-    # Helpers
-    @property
-    @abstractmethod
-    def helper_addr_abs(self) -> int:
-        pass
-
-    @property
-    @abstractmethod
-    def helper_addr_rel(self) -> int:
-        pass
-
-    @property
-    @abstractmethod
-    def helper_fetched(self) -> int:
-        pass
-
-    @property
-    @abstractmethod
-    def helper_cycles(self) -> int:
-        pass
-
-    @property
-    @abstractmethod
-    def helper_opcode(self) -> int:
-        pass
-    
-    @helper_addr_abs.setter
-    @abstractmethod
-    def helper_addr_abs(self, value: int) -> None:
-        pass
-
-    @helper_addr_rel.setter
-    @abstractmethod
-    def helper_addr_rel(self, value: int) -> None:
-        pass
-
-    @helper_fetched.setter
-    @abstractmethod
-    def helper_fetched(self, value: int) -> None:
-        pass
-
-    @helper_cycles.setter
-    @abstractmethod
-    def helper_cycles(self, value: int) -> None:
-        pass
-
-    @helper_opcode.setter
-    @abstractmethod
-    def helper_opcode(self, value: int) -> None:
         pass
 
     # Registers

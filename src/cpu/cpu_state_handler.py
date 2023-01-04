@@ -2,6 +2,15 @@ from .interfaces.abstract_cpu_state_handler import AbstractCpuStateHandler
 
 class CpuStateHandler(AbstractCpuStateHandler):
     def __init__(self):
+        self._helpers = {
+            "addr_abs": 0x0000, # Absolute address
+            "addr_rel": 0x0000, # Relative address
+            "cycles": 0,        # Cycles
+            "fetched": 0x0000,  # Fetched data
+            "opcode": 0x00,     # Opcode
+
+        }
+
         self._flags = {
             "C": (0 << 0), # Carry
             "Z": (0 << 1), # Zero
@@ -13,14 +22,6 @@ class CpuStateHandler(AbstractCpuStateHandler):
             "N": (0 << 7),  # Negative
         }
 
-        self._helpers = {
-            "addr_abs": 0x0000, # Absolute address
-            "addr_rel": 0x0000, # Relative address
-            "cycles": 0,        # Cycles
-            "fetched": 0x0000,  # Fetched data
-            "opcode": 0x00,      # Opcode
-
-        }
         self._registers = {
             "A": 0x00,    # 8-bit Accumulator
             "X": 0x00,    # 8-bit X register
@@ -29,6 +30,52 @@ class CpuStateHandler(AbstractCpuStateHandler):
             "SR": 0x00,   # 8-bit Status register
             "PC": 0x0000, # 16-bit Program counter
         }
+
+    # Helpers Getters and Setters
+    @property
+    def addr_abs(self) -> int:
+        return self._helpers.get("addr_abs")
+
+    @property
+    def addr_rel(self) -> int:
+        return self._helpers.get("addr_rel")
+
+    @property
+    def fetched(self) -> int:
+        return self._helpers.get("fetched")
+
+    @property
+    def cycles(self) -> int:
+        return self._helpers.get("cycles")
+
+    @property
+    def opcode(self) -> int:
+        return self._helpers.get("opcode")
+
+    @addr_abs.setter
+    def addr_abs(self, value: int):
+        self._check_value_size(value, 16)
+        self._helpers["addr_abs"] = value
+
+    @addr_rel.setter
+    def addr_rel(self, value: int):
+        self._check_value_size(value, 16)
+        self._helpers["addr_rel"] = value
+
+    @fetched.setter
+    def fetched(self, value: int):
+        self._check_value_size(value, 16)
+        self._helpers["fetched"] = value
+
+    @cycles.setter
+    def cycles(self, value: int):
+        self._check_value_size(value, 64)
+        self._helpers["cycles"] = value
+
+    @opcode.setter
+    def opcode(self, value: int):
+        self._check_value_size(value)
+        self._helpers["opcode"] = value
 
     # Flags Getters and Setters
     @property
@@ -118,52 +165,6 @@ class CpuStateHandler(AbstractCpuStateHandler):
         self._ensure_nth_bit(value, bit=7)
 
         self._flags["N"] = value
-
-    # Helpers Getters and Setters
-    @property
-    def helper_addr_abs(self) -> int:
-        return self._helpers.get("addr_abs")
-
-    @property
-    def helper_addr_rel(self) -> int:
-        return self._helpers.get("addr_rel")
-
-    @property
-    def helper_fetched(self) -> int:
-        return self._helpers.get("fetched")
-
-    @property
-    def helper_cycles(self) -> int:
-        return self._helpers.get("cycles")
-
-    @property
-    def helper_opcode(self) -> int:
-        return self._helpers.get("opcode")
-
-    @helper_addr_abs.setter
-    def helper_addr_abs(self, value: int):
-        self._check_value_size(value, 16)
-        self._helpers["addr_abs"] = value
-
-    @helper_addr_rel.setter
-    def helper_addr_rel(self, value: int):
-        self._check_value_size(value, 16)
-        self._helpers["addr_rel"] = value
-
-    @helper_fetched.setter
-    def helper_fetched(self, value: int):
-        self._check_value_size(value, 16)
-        self._helpers["fetched"] = value
-
-    @helper_cycles.setter
-    def helper_cycles(self, value: int):
-        self._check_value_size(value, 64)
-        self._helpers["cycles"] = value
-
-    @helper_opcode.setter
-    def helper_opcode(self, value: int):
-        self._check_value_size(value)
-        self._helpers["opcode"] = value
 
     # Registers Getters and Setters
     @property
