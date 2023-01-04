@@ -3,8 +3,8 @@ from typing import Dict
 
 class AbstractCpuStateHandler(ABC):
     def __init__(self):
-        self._flags: Dict[str, int]
         self._helpers: Dict[str, int]
+        self._flags: Dict[str, int]
         self._registers: Dict[str, int]
 
     # Helpers
@@ -33,6 +33,16 @@ class AbstractCpuStateHandler(ABC):
     def opcode(self) -> int:
         pass
     
+    @property
+    @abstractmethod
+    def current_addressing_mode(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def current_instruction(self) -> str:
+        pass
+
     @addr_abs.setter
     @abstractmethod
     def addr_abs(self, value: int) -> None:
@@ -56,6 +66,16 @@ class AbstractCpuStateHandler(ABC):
     @opcode.setter
     @abstractmethod
     def opcode(self, value: int) -> None:
+        pass
+
+    @current_addressing_mode.setter
+    @abstractmethod
+    def current_addressing_mode(self, value) -> None:
+        pass
+    
+    @current_instruction.setter
+    @abstractmethod
+    def current_instruction(self, value) -> None:
         pass
 
     # Flags

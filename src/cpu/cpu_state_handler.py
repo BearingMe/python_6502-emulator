@@ -53,13 +53,12 @@ class CpuStateHandler(AbstractCpuStateHandler):
     def opcode(self) -> int:
         return self._helpers.get("opcode")
 
-    # TODO: add to interface
     @property
-    def current_addressing_mode(self):
+    def current_addressing_mode(self) -> str:
         return self._helpers.get("current_addressing_mode")
 
     @property
-    def current_instruction(self):
+    def current_instruction(self) -> str:
         return self._helpers.get("current_instruction")
 
     @addr_abs.setter
@@ -87,7 +86,7 @@ class CpuStateHandler(AbstractCpuStateHandler):
         self._check_value_size(value)
         self._helpers["opcode"] = value
 
-    # TODO: add enum and tests
+    # TODO: add enum, tests and typechecking
     @current_addressing_mode.setter
     def current_addressing_mode(self, value):
         self._helpers["current_addressing_mode"] = value
