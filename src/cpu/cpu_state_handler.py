@@ -3,12 +3,13 @@ from .interfaces.abstract_cpu_state_handler import AbstractCpuStateHandler
 class CpuStateHandler(AbstractCpuStateHandler):
     def __init__(self):
         self._helpers = {
-            "addr_abs": 0x0000, # Absolute address
-            "addr_rel": 0x0000, # Relative address
-            "cycles": 0,        # Cycles
-            "fetched": 0x0000,  # Fetched data
-            "opcode": 0x00,     # Opcode
-
+            "addr_abs": 0x0000,              # Absolute address
+            "addr_rel": 0x0000,              # Relative address
+            "cycles": 0,                     # Cycles
+            "fetched": 0x0000,               # Fetched data
+            "opcode": 0x00,                  # Opcode
+            "current_addressing_mode": None, # Current addressing mode
+            "current_instruction": None,     # Current instruction
         }
 
         self._flags = {
@@ -52,6 +53,15 @@ class CpuStateHandler(AbstractCpuStateHandler):
     def opcode(self) -> int:
         return self._helpers.get("opcode")
 
+    # TODO: add to interface
+    @property
+    def current_addressing_mode(self):
+        return self._helpers.get("current_addressing_mode")
+
+    @property
+    def current_instruction(self):
+        return self._helpers.get("current_instruction")
+
     @addr_abs.setter
     def addr_abs(self, value: int):
         self._check_value_size(value, 16)
@@ -76,6 +86,15 @@ class CpuStateHandler(AbstractCpuStateHandler):
     def opcode(self, value: int):
         self._check_value_size(value)
         self._helpers["opcode"] = value
+
+    # TODO: add enum and tests
+    @current_addressing_mode.setter
+    def current_addressing_mode(self, value):
+        self._helpers["current_addressing_mode"] = value
+    
+    @current_instruction.setter
+    def current_instruction(self, value):
+        self._helpers["current_instruction"] = value
 
     # Flags Getters and Setters
     @property
