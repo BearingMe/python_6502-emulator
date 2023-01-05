@@ -37,7 +37,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Used to access memory at a specific given address from the program counter
         """
         low_byte, high_byte = self._read_word(self.cpu.state.register_PC)
-        self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
+        self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
         return 0
 
@@ -47,11 +47,11 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Access memory at a specific address read + X register offset
         """
         low_byte, high_byte = self._read_word(self.cpu.state.register_PC)
-        self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
+        self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
-        self.cpu.state.helper_addr_abs += self.cpu.state.register_X
+        self.cpu.state.addr_abs += self.cpu.state.register_X
 
-        has_crossed_boundary = self._check_page_boundary(self.cpu.state.helper_addr_abs, high_byte)
+        has_crossed_boundary = self._check_page_boundary(self.cpu.state.addr_abs, high_byte)
 
         if has_crossed_boundary:
             return 1
@@ -64,11 +64,11 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Access memory at a specific address read + Y register offset
         """
         low_byte, high_byte = self._read_word(self.cpu.state.register_PC)
-        self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
+        self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
-        self.cpu.state.helper_addr_abs += self.cpu.state.register_Y
+        self.cpu.state.addr_abs += self.cpu.state.register_Y
 
-        has_crossed_boundary = self._check_page_boundary(self.cpu.state.helper_addr_abs, high_byte)
+        has_crossed_boundary = self._check_page_boundary(self.cpu.state.addr_abs, high_byte)
 
         if has_crossed_boundary:
             return 1
@@ -80,7 +80,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Immediate addressing mode
         Specifies a value to be used in an operation
         """
-        self.cpu.state.helper_addr_abs = self.cpu.state.register_PC
+        self.cpu.state.addr_abs = self.cpu.state.register_PC
         self.cpu.state.register_PC += 1
 
         return 0
@@ -90,7 +90,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Implied addressing mode
         No operand is needed
         """
-        self.cpu.state.helper_fetched = self.cpu.state.register_A
+        self.cpu.state.fetched = self.cpu.state.register_A
 
         return 0
 
@@ -110,7 +110,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
 
         low_byte, high_byte = self._read_word(pointer, increment=False)
 
-        self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
+        self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
         return 0
 
@@ -125,7 +125,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
 
         low_byte, high_byte = self._read_word(pointer, increment=False)
 
-        self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
+        self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
         return 0
 
@@ -139,11 +139,11 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
 
         low_byte, high_byte = self._read_word(pointer, increment=False)
 
-        self.cpu.state.helper_addr_abs = (high_byte << 8) | low_byte
-        self.cpu.state.helper_addr_abs += self.cpu.state.register_Y
-        self.cpu.state.helper_addr_abs &= 0xFFFF
+        self.cpu.state.addr_abs = (high_byte << 8) | low_byte
+        self.cpu.state.addr_abs += self.cpu.state.register_Y
+        self.cpu.state.addr_abs &= 0xFFFF
 
-        has_crossed_boundary = self._check_page_boundary(self.cpu.state.helper_addr_abs, high_byte)
+        has_crossed_boundary = self._check_page_boundary(self.cpu.state.addr_abs, high_byte)
 
         if has_crossed_boundary:
             return 1
@@ -156,10 +156,10 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Relative addressing mode
         Used to specify a branch offset
         """
-        self.cpu.state.helper_addr_rel = self._read_byte(self.cpu.state.register_PC)
+        self.cpu.state.addr_rel = self._read_byte(self.cpu.state.register_PC)
 
-        if self.cpu.state.helper_addr_rel & 0x80:
-            self.cpu.state.helper_addr_rel |= 0xFF00
+        if self.cpu.state.addr_rel & 0x80:
+            self.cpu.state.addr_rel |= 0xFF00
 
         return 0
 
@@ -168,9 +168,9 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Zero page addressing mode
         Used to access memory at a specific address
         """
-        self.cpu.state.helper_addr_abs = self._read_byte(self.cpu.state.register_PC)
+        self.cpu.state.addr_abs = self._read_byte(self.cpu.state.register_PC)
 
-        self.cpu.state.helper_addr_abs &= 0x00FF
+        self.cpu.state.addr_abs &= 0x00FF
 
         return 0
 
@@ -180,10 +180,10 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Zero page addressing mode with X offset
         Access memory at a specific address + X register offset
         """
-        self.cpu.state.helper_addr_abs = self._read_byte(self.cpu.state.register_PC)
-        self.cpu.state.helper_addr_abs += self.cpu.state.register_X
+        self.cpu.state.addr_abs = self._read_byte(self.cpu.state.register_PC)
+        self.cpu.state.addr_abs += self.cpu.state.register_X
 
-        self.cpu.state.helper_addr_abs &= 0x00FF
+        self.cpu.state.addr_abs &= 0x00FF
 
         return 0
 
@@ -193,10 +193,10 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         Zero page addressing mode with Y offset
         Access memory at a specific address + Y register offset
         """
-        self.cpu.state.helper_addr_abs = self._read_byte(self.cpu.state.register_PC)
-        self.cpu.state.helper_addr_abs += self.cpu.state.register_Y
+        self.cpu.state.addr_abs = self._read_byte(self.cpu.state.register_PC)
+        self.cpu.state.addr_abs += self.cpu.state.register_Y
 
-        self.cpu.state.helper_addr_abs &= 0x00FF
+        self.cpu.state.addr_abs &= 0x00FF
 
         return 0
     
