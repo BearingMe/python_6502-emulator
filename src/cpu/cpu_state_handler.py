@@ -1,5 +1,7 @@
 from .interfaces.abstract_cpu_state_handler import AbstractCpuStateHandler
 
+from typing import Any
+
 class CpuStateHandler(AbstractCpuStateHandler):
     def __init__(self):
         self._helpers = {
@@ -13,14 +15,14 @@ class CpuStateHandler(AbstractCpuStateHandler):
         }
 
         self._flags = {
-            "C": (0 << 0), # Carry
-            "Z": (0 << 1), # Zero
-            "I": (0 << 2), # Interrupt
-            "D": (0 << 3), # Decimal
-            "B": (0 << 4), # Break
-            "U": (0 << 5), # Unused
-            "V": (0 << 6), # Overflow
-            "N": (0 << 7),  # Negative
+            "C": (1 << 0), # Carry
+            "Z": (1 << 1), # Zero
+            "I": (1 << 2), # Interrupt
+            "D": (1 << 3), # Decimal
+            "B": (1 << 4), # Break
+            "U": (1 << 5), # Unused
+            "V": (1 << 6), # Overflow
+            "N": (1 << 7),  # Negative
         }
 
         self._registers = {
@@ -96,93 +98,95 @@ class CpuStateHandler(AbstractCpuStateHandler):
         self._helpers["current_instruction"] = value
 
     # Flags Getters and Setters
+    # TODO: use clearers names
     @property
     def flag_C(self) -> int:
-        return self._flags.get("C")
+        return self._get_flag("C")
 
     @property
     def flag_Z(self) -> int:
-        return self._flags.get("Z")
+        return self._get_flag("Z")
 
     @property
     def flag_I(self) -> int:
-        return self._flags.get("I")
+        return self._get_flag("I")
 
     @property
     def flag_D(self) -> int:
-        return self._flags.get("D")
+        return self._get_flag("D")
 
     @property
     def flag_B(self) -> int:
-        return self._flags.get("B")
+        return self._get_flag("B")
 
     @property
     def flag_U(self) -> int:
-        return self._flags.get("U")
+        return self._get_flag("U")
 
     @property
     def flag_V(self) -> int:
-        return self._flags.get("V")
+        return self._get_flag("V")
 
     @property
     def flag_N(self) -> int:
-        return self._flags.get("N")
+        return self._get_flag("N")
 
+    # TODO: add tests
     @flag_C.setter
     def flag_C(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=0)
+        self._check_value_type(value, bool)
 
-        self._flags["C"] = value
+        self._set_flag("C", value)
 
     @flag_Z.setter
     def flag_Z(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=1)
+        self._check_value_type(value, bool)
 
-        self._flags["Z"] = value
+        self._set_flag("Z", value)
 
     @flag_I.setter
     def flag_I(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=2)
+        self._check_value_type(value, bool)
 
-        self._flags["I"] = value
+        self._set_flag("I", value)
 
     @flag_D.setter
     def flag_D(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=3)
+        self._check_value_type(value, bool)
 
-        self._flags["D"] = value
+        self._set_flag("D", value)
 
     @flag_B.setter
     def flag_B(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=4)
+        self._check_value_type(value, bool)
 
-        self._flags["B"] = value
+        self._set_flag("B", value)
 
     @flag_U.setter
     def flag_U(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=5)
+        self._check_value_type(value, bool)
 
-        self._flags["U"] = value
+        self._set_flag("U", value)
 
     @flag_V.setter
     def flag_V(self, value: int):
         self._check_value_size(value)   
-        self._ensure_nth_bit(value, bit=6)
+        self._check_value_type(value, bool)
 
-        self._flags["V"] = value
+        self._set_flag("V", value)
 
     @flag_N.setter
     def flag_N(self, value: int):
         self._check_value_size(value)
-        self._ensure_nth_bit(value, bit=7)
+        self._check_value_type(value, bool)
 
-        self._flags["N"] = value
+        self._set_flag("N", value)
 
     # Registers Getters and Setters
     @property
@@ -231,7 +235,7 @@ class CpuStateHandler(AbstractCpuStateHandler):
 
     @register_SP.setter
     def register_SP(self, value: int):
-        self._check_value_size(value)
+        # self._check_value_size(value)
         self._registers["SP"] = value
 
     @register_SR.setter
@@ -244,16 +248,17 @@ class CpuStateHandler(AbstractCpuStateHandler):
         if not (0 <= value < 2**bits):
             raise ValueError(f"{value} is not a {bits} bits unsigned integer")
 
-    def _ensure_nth_bit(self, value: int, bit: int):
-        sulfix_map = {
-            1: "st", 
-            2: "nd", 
-            3: "rd",
-        }
-        
-        sulfix = sulfix_map.get(bit, "th")
+    def _check_value_type(self, value: Any, expected_type: str):
+        if not isinstance(value, expected_type):
+            raise TypeError(f"{value} is not a {expected_type}")
 
-        bit_exists = (value >> bit) & 1
-        
-        if not (value == 0 or bit_exists):
-            raise ValueError(f"{bit}{sulfix} bit not set")
+    def _set_flag(self, flag: str, value: int):
+        if (value):
+            self.register_SR |= self._flags[flag]
+        else:
+            self.register_SR &= ~self._flags[flag]
+
+    def _get_flag(self, flag: str) -> int:
+        flag_value = self.register_SR & self._flags[flag]
+
+        return bool(flag_value)
