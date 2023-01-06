@@ -1,27 +1,27 @@
-from .interfaces.abstract_cpu_addressing_modes import AbstractCpuAddressingModes
-from .interfaces.abstract_cpu import AbstractCpu
+from .interfaces import AbstractCpuAddressingModes
+from .interfaces import AbstractCpu
 
 class CpuAddressingModes(AbstractCpuAddressingModes):
-    def __init__(self, cpu):
-        self.cpu: AbstractCpu = cpu
+    def __init__(self, cpu: AbstractCpu):
+        self.cpu = cpu
 
-    def _read_byte(self, address: int, increment: bool = True) -> int:
+    def _read_byte(self, address: int, increment_program_counter: bool = True) -> int:
         """
         Reads a single byte value from the address pointed to by program counter
         Increments program counter by 1
         """
         operand = self.cpu.bus.read(address)
-        self.cpu.state.register_PC += (1 if increment else 0)
+        self.cpu.state.register_PC += (1 if increment_program_counter else 0)
 
         return operand
 
-    def _read_word(self, address: int, increment: bool = True) -> tuple:
+    def _read_word(self, address: int, increment_program_counter: bool = True) -> tuple:
         """
         Reads a word value from the address pointed to by program counter
         Increments program counter by 2
         """
-        low_byte = self._read_byte(address, increment)
-        high_byte = self._read_byte(address + 1, increment)
+        low_byte = self._read_byte(address, increment_program_counter)
+        high_byte = self._read_byte(address + 1, increment_program_counter)
 
         return low_byte, high_byte
 
@@ -108,7 +108,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
 
         pointer = (pointer_high_byte << 8) | pointer_low_byte
 
-        low_byte, high_byte = self._read_word(pointer, increment=False)
+        low_byte, high_byte = self._read_word(pointer, increment_program_counter=False)
 
         self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
@@ -123,7 +123,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         pointer += self.cpu.state.register_X
         pointer &= 0x00FF
 
-        low_byte, high_byte = self._read_word(pointer, increment=False)
+        low_byte, high_byte = self._read_word(pointer, increment_program_counter=False)
 
         self.cpu.state.addr_abs = (high_byte << 8) | low_byte
 
@@ -137,7 +137,7 @@ class CpuAddressingModes(AbstractCpuAddressingModes):
         pointer = self._read_byte(self.cpu.state.register_PC)
         pointer &= 0x00FF
 
-        low_byte, high_byte = self._read_word(pointer, increment=False)
+        low_byte, high_byte = self._read_word(pointer, increment_program_counter=False)
 
         self.cpu.state.addr_abs = (high_byte << 8) | low_byte
         self.cpu.state.addr_abs += self.cpu.state.register_Y
