@@ -9,6 +9,7 @@ packages = [{include = "../python_6502"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+rich = "^13.0.0"
 
 [tool.poetry.scripts]
 test = "scripts:test"
