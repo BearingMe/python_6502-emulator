@@ -1,14 +1,18 @@
 from .interfaces import AbstractCpu
+from .interfaces import AbstractCpuDebugger
 
 from rich.console import Console
 
-class CpuDebugger():
+class CpuDebugger(AbstractCpuDebugger):
     def __init__(self, cpu: AbstractCpu):
         self.console = Console()
         self.cpu = cpu
         self.cprint = self.console.print
 
     def _log_flags(self) -> None:
+        """
+        Log the current state of the CPU flags
+        """
         self.cprint("[red bold]>[/red bold]", end=" ")
 
         print(
@@ -23,6 +27,9 @@ class CpuDebugger():
         )
 
     def _log_registers(self) -> None:
+        """
+        Log the current state of the CPU registers
+        """
         self.cprint("[red bold]>[/red bold]", end=" ")
 
         print(
@@ -33,18 +40,27 @@ class CpuDebugger():
         )
 
     def _log_info(self) -> None:
+        """
+        Log general information about the current instruction
+        """
         opcode_info = f"{self.cpu.state.opcode:02x}".upper()
 
         self.cprint(
             "[green]•[/green] Opcode:", f"[cyan]{opcode_info}[/cyan]", "\n" +
             "[green]•[/green] Addressing Mode:", f"[cyan]{self.cpu.state.current_addressing_mode}[/cyan]", "\n" +
-            "[green]•[/green] Instruction:", f"[cyan]{self.cpu.state.current_instruction}[/cyan]"
+            "[green]•[/green] Instruction:", f"[cyan]{self.cpu.state.current_instruction}[/cyan]",
         )
 
     def _log_program_counter(self) -> None:
-        print(f"• PC: {self.cpu.state.register_PC - 1:04x}")
+        """
+        Log the program counter which triggered the action
+        """
+        print(f"• PC: {self.cpu.state.register_PC:04x}")
 
     def log(self) -> None:
+        """
+        Log all infos
+        """
         self._log_program_counter()
         self._log_info()
         self._log_registers()
