@@ -1,9 +1,54 @@
 from .interfaces.abstract_cpu_instructions import AbstractCpuInstructions
 from .interfaces.abstract_cpu import AbstractCpu
 
+# TODO: Implement interrupts and refactor
 class CpuInstructions(AbstractCpuInstructions):
     def __init__(self, cpu: AbstractCpu):
         self.cpu: AbstractCpu = cpu
+
+    def irq(self) -> None:
+        """
+        Interrupt request
+        """
+        # if interrupt are allowed
+        if not self.cpu.state.flag_I:
+            self.cpu.bus.write(0x0100 + self.cpu.state.register_SP, (self.cpu.state.register_PC >> 8) & 0x00FF)
+            self.cpu.state.register_SP -= 1
+
+            self.cpu.bus.write(0x0100 + self.cpu.state.register_SP, self.cpu.state.register_PC & 0x00FF)
+            self.cpu.state.register_SP -= 1
+
+            self.cpu.state.flag_B = bool(0)
+            self.cpu.state.flag_U = bool(1)
+            self.cpu.state.flag_I = bool(1)
+
+            self.cpu.bus.write(0x0100 + self.cpu.state.register_SP, self.cpu.state.register_SR) 
+            self.cpu.state.register_SP -= 1
+
+            self.cpu.state.register_PC = self.cpu.bus.read(0xFFFE) | (self.cpu.bus.read(0xFFFF) << 8)
+
+            self.cpu.state.cycles = 7
+
+    def nmi(self) -> None:
+        """
+        Non-maskable interrupt
+        """
+        self.cpu.bus.write(0x0100 + self.cpu.state.register_SP, (self.cpu.state.register_PC >> 8) & 0x00FF)
+        self.cpu.state.register_SP -= 1
+
+        self.cpu.bus.write(0x0100 + self.cpu.state.register_SP, self.cpu.state.register_PC & 0x00FF)
+        self.cpu.state.register_SP -= 1
+
+        self.cpu.state.flag_B = bool(0)
+        self.cpu.state.flag_U = bool(1)
+        self.cpu.state.flag_I = bool(1)
+
+        self.cpu.bus.write(0x0100 + self.cpu.state.register_SP, self.cpu.state.register_SR)
+        self.cpu.state.register_SP -= 1
+
+        self.cpu.state.register_PC = self.cpu.bus.read(0xFFFA) | (self.cpu.bus.read(0xFFFB) << 8)
+
+        self.cpu.state.cycles = 8
     
     def ADC(self) -> int:
         self.cpu.fetch()
@@ -280,7 +325,6 @@ class CpuInstructions(AbstractCpuInstructions):
         self.cpu.fetch()
         
         self.cpu.state.register_X = self.cpu.state.fetched
-        print(self.cpu.state.register_X == 0x00)
 
         self.cpu.state.flag_Z = bool(int(self.cpu.state.register_X == 0x00))
         self.cpu.state.flag_N = bool(self.cpu.state.register_X & 0x80)
