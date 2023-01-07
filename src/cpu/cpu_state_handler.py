@@ -1,10 +1,10 @@
-from .interfaces.abstract_cpu_state_handler import AbstractCpuStateHandler
+from .interfaces import AbstractCpuStateHandler
 
 from typing import Any
 
 class CpuStateHandler(AbstractCpuStateHandler):
     def __init__(self):
-        self._helpers = {
+        self._aux_vars = {
             "addr_abs": 0x0000,              # Absolute address
             "addr_rel": 0x0000,              # Relative address
             "cycles": 0,                     # Cycles
@@ -22,7 +22,7 @@ class CpuStateHandler(AbstractCpuStateHandler):
             "B": (1 << 4), # Break
             "U": (1 << 5), # Unused
             "V": (1 << 6), # Overflow
-            "N": (1 << 7),  # Negative
+            "N": (1 << 7), # Negative
         }
 
         self._registers = {
@@ -34,71 +34,91 @@ class CpuStateHandler(AbstractCpuStateHandler):
             "PC": 0x0000, # 16-bit Program counter
         }
 
-    # Helpers Getters and Setters
+    # Methods
+    def _check_value_size(self, value: int, bits: int = 8):
+        if not (0 <= value < 2**bits):
+            raise ValueError(f"{value} is not a {bits} bits unsigned integer")
+
+    def _check_value_type(self, value: Any, expected_type: str):
+        if not isinstance(value, expected_type):
+            raise TypeError(f"{value} is not a {expected_type}")
+
+    def _set_flag(self, flag: str, value: int):
+        if (value):
+            self.register_SR |= self._flags[flag]
+        else:
+            self.register_SR &= ~self._flags[flag]
+
+    def _get_flag(self, flag: str) -> int:
+        flag_value = self.register_SR & self._flags[flag]
+
+        return bool(flag_value)
+
+
     @property
     def addr_abs(self) -> int:
-        return self._helpers.get("addr_abs")
+        return self._aux_vars.get("addr_abs")
 
     @property
     def addr_rel(self) -> int:
-        return self._helpers.get("addr_rel")
+        return self._aux_vars.get("addr_rel")
 
     @property
     def fetched(self) -> int:
-        return self._helpers.get("fetched")
+        return self._aux_vars.get("fetched")
 
     @property
     def cycles(self) -> int:
-        return self._helpers.get("cycles")
+        return self._aux_vars.get("cycles")
 
     @property
     def opcode(self) -> int:
-        return self._helpers.get("opcode")
+        return self._aux_vars.get("opcode")
 
     @property
     def current_addressing_mode(self) -> str:
-        return self._helpers.get("current_addressing_mode")
+        return self._aux_vars.get("current_addressing_mode")
 
     @property
     def current_instruction(self) -> str:
-        return self._helpers.get("current_instruction")
+        return self._aux_vars.get("current_instruction")
 
     @addr_abs.setter
     def addr_abs(self, value: int):
         self._check_value_size(value, 16)
-        self._helpers["addr_abs"] = value
+        self._aux_vars["addr_abs"] = value
 
     @addr_rel.setter
     def addr_rel(self, value: int):
         self._check_value_size(value, 16)
-        self._helpers["addr_rel"] = value
+        self._aux_vars["addr_rel"] = value
 
     @fetched.setter
     def fetched(self, value: int):
         self._check_value_size(value, 16)
-        self._helpers["fetched"] = value
+        self._aux_vars["fetched"] = value
 
     @cycles.setter
     def cycles(self, value: int):
         self._check_value_size(value, 64)
-        self._helpers["cycles"] = value
+        self._aux_vars["cycles"] = value
 
     @opcode.setter
     def opcode(self, value: int):
         self._check_value_size(value)
-        self._helpers["opcode"] = value
+        self._aux_vars["opcode"] = value
 
     # TODO: add enum, tests and typechecking
     @current_addressing_mode.setter
     def current_addressing_mode(self, value):
-        self._helpers["current_addressing_mode"] = value
+        self._check_value_type(value, str)
+        self._aux_vars["current_addressing_mode"] = value
     
     @current_instruction.setter
     def current_instruction(self, value):
-        self._helpers["current_instruction"] = value
+        self._check_value_type(value, str)
+        self._aux_vars["current_instruction"] = value
 
-    # Flags Getters and Setters
-    # TODO: use clearers names
     @property
     def flag_C(self) -> int:
         return self._get_flag("C")
@@ -242,23 +262,3 @@ class CpuStateHandler(AbstractCpuStateHandler):
     def register_SR(self, value: int):
         self._check_value_size(value)
         self._registers["SR"] = value
-
-    # Methods
-    def _check_value_size(self, value: int, bits: int = 8):
-        if not (0 <= value < 2**bits):
-            raise ValueError(f"{value} is not a {bits} bits unsigned integer")
-
-    def _check_value_type(self, value: Any, expected_type: str):
-        if not isinstance(value, expected_type):
-            raise TypeError(f"{value} is not a {expected_type}")
-
-    def _set_flag(self, flag: str, value: int):
-        if (value):
-            self.register_SR |= self._flags[flag]
-        else:
-            self.register_SR &= ~self._flags[flag]
-
-    def _get_flag(self, flag: str) -> int:
-        flag_value = self.register_SR & self._flags[flag]
-
-        return bool(flag_value)
