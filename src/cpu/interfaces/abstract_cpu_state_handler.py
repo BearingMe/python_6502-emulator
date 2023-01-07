@@ -3,7 +3,7 @@ from typing import Dict
 
 class AbstractCpuStateHandler(ABC):
     def __init__(self):
-        self._helpers: Dict[str, int]
+        self._aux_vars: Dict[str, int]
         self._flags: Dict[str, int]
         self._registers: Dict[str, int]
 

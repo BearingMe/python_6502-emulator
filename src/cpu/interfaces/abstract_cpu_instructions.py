@@ -2,6 +2,14 @@ from abc import ABC, abstractmethod
 
 class AbstractCpuInstructions(ABC):
     @abstractmethod
+    def irq(self) -> None:
+        pass
+
+    @abstractmethod
+    def nmi(self) -> None:
+        pass
+
+    @abstractmethod
     def ADC(self) -> int:
         pass
 
