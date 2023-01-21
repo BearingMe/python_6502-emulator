@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class AbstractCpuDebugger(ABC):
+class AbstractDebugger(ABC):
     @abstractmethod
     def log(self) -> None:
         pass

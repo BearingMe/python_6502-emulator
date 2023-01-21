@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict
 
-class AbstractCpuStateHandler(ABC):
+class AbstractStateHandler(ABC):
     def __init__(self):
         self._aux_vars: Dict[str, int]
         self._flags: Dict[str, int]

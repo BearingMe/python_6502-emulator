@@ -1,16 +1,16 @@
 from abc import ABC, abstractmethod
 
-from .abstract_cpu_addressing_modes import AbstractCpuAddressingModes
-from .abstract_cpu_bus import AbstractCpuBus
-from .abstract_cpu_instructions import AbstractCpuInstructions
-from .abstract_cpu_state_handler import AbstractCpuStateHandler
+from .abstract_addressing_modes import AbstractAddressingModes
+from .abstract_bus import AbstractBus
+from .abstract_instructions import AbstractInstructions
+from .abstract_state_handler import AbstractStateHandler
 
 class AbstractCpu(ABC):
     def __init__(self):
-        self.addr_modes: AbstractCpuAddressingModes
-        self.bus: AbstractCpuBus
-        self.instructions: AbstractCpuInstructions
-        self.state: AbstractCpuStateHandler
+        self.addr_modes: AbstractAddressingModes
+        self.bus: AbstractBus
+        self.instructions: AbstractInstructions
+        self.state: AbstractStateHandler
 
     @abstractmethod
     def run(self) -> None:

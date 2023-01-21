@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class AbstractCpuBus(ABC):
+class AbstractBus(ABC):
     @abstractmethod
     def read(self, address: int) -> int:
         pass

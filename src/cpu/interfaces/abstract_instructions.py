@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class AbstractCpuInstructions(ABC):
+class AbstractInstructions(ABC):
     @abstractmethod
     def irq(self) -> None:
         pass

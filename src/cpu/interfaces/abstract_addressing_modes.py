@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class AbstractCpuAddressingModes(ABC):
+class AbstractAddressingModes(ABC):
     @abstractmethod
     def ABS(self) -> int:
         pass
