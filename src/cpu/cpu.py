@@ -1,25 +1,21 @@
-from .interfaces import AbstractCpu
-from .interfaces import AbstractCpuBus
-from .interfaces import AbstractCpuStateHandler
-from .interfaces import AbstractCpuInstructions
-from .interfaces import AbstractCpuAddressingModes
-
-from .cpu_bus import CpuBus
-from .cpu_addressing_modes import CpuAddressingModes
-from .cpu_instructions import CpuInstructions
-from .cpu_state_handler import CpuStateHandler
-from .cpu_debugger import CpuDebugger
-
 import json
 from time import sleep
 
+from .cpu_bus import Bus
+from .cpu_addressing_modes import AddressingModes
+from .cpu_instructions import Instructions
+from .cpu_state_handler import StateHandler
+from .cpu_debugger import Debugger
+
+from .interfaces import AbstractCpu
+
 class Cpu(AbstractCpu):
     def __init__(self):
-        self.state: AbstractCpuStateHandler = CpuStateHandler()
-        self.bus: AbstractCpuBus = CpuBus(self)
-        self.addr_modes: AbstractCpuAddressingModes = CpuAddressingModes(self)
-        self.instructions: AbstractCpuInstructions = CpuInstructions(self)
-        self.debugger = CpuDebugger(self)
+        self.state = StateHandler()
+        self.bus = Bus(self)
+        self.addr_modes = AddressingModes(self)
+        self.instructions = Instructions(self)
+        self.debugger = Debugger(self)
 
     def _wait_cycles(self, clock_speed_mhz: float = 1) -> None:
         """
@@ -105,7 +101,7 @@ class Cpu(AbstractCpu):
             self.state.cycles += instruction()
 
             if cycle_accurate:
-                self._wait_cycles(0.000002)
+                self._wait_cycles(1000)
 
             if self.state.current_instruction == "BRK":
                 break

@@ -1,9 +1,9 @@
 from .interfaces import AbstractCpu
-from .interfaces import AbstractCpuDebugger
+from .interfaces import AbstractDebugger
 
 from rich.console import Console
 
-class CpuDebugger(AbstractCpuDebugger):
+class Debugger(AbstractDebugger):
     def __init__(self, cpu: AbstractCpu):
         self.console = Console()
         self.cpu = cpu

@@ -1,8 +1,8 @@
-from .interfaces import AbstractCpuStateHandler
+from .interfaces import AbstractStateHandler
 
 from typing import Any
 
-class CpuStateHandler(AbstractCpuStateHandler):
+class StateHandler(AbstractStateHandler):
     def __init__(self):
         self._aux_vars = {
             "addr_abs": 0x0000,              # Absolute address
@@ -255,7 +255,6 @@ class CpuStateHandler(AbstractCpuStateHandler):
 
     @register_SP.setter
     def register_SP(self, value: int):
-        # self._check_value_size(value)
         self._registers["SP"] = value
 
     @register_SR.setter

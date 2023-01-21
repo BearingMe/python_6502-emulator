@@ -1,7 +1,7 @@
 from .interfaces import AbstractCpu
-from .interfaces import AbstractCpuBus
+from .interfaces import AbstractBus
 
-class CpuBus(AbstractCpuBus):
+class Bus(AbstractBus):
     def __init__(self, cpu: AbstractCpu):
         self.cpu = cpu
         self.ram = [0] * 64 * 1024

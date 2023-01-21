@@ -1,7 +1,7 @@
-from .interfaces import AbstractCpuAddressingModes
+from .interfaces import AbstractAddressingModes
 from .interfaces import AbstractCpu
 
-class CpuAddressingModes(AbstractCpuAddressingModes):
+class AddressingModes(AbstractAddressingModes):
     def __init__(self, cpu: AbstractCpu):
         self.cpu = cpu
 

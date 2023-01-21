@@ -1,8 +1,8 @@
-from .interfaces.abstract_cpu_instructions import AbstractCpuInstructions
+from .interfaces.abstract_instructions import AbstractInstructions
 from .interfaces.abstract_cpu import AbstractCpu
 
 # TODO: Implement interrupts and refactor
-class CpuInstructions(AbstractCpuInstructions):
+class Instructions(AbstractInstructions):
     def __init__(self, cpu: AbstractCpu):
         self.cpu: AbstractCpu = cpu
 
