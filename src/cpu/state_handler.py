@@ -29,7 +29,7 @@ class StateHandler(AbstractStateHandler):
             "A": 0x00,    # 8-bit Accumulator
             "X": 0x00,    # 8-bit X register
             "Y": 0x00,    # 8-bit Y register
-            "SP": 0x00,   # 8-bit Stack pointer
+            "SP": 0x00,   # 8-bit Stack pointer, access values from 0x0100 to 0x01FF (high byte is ignored)
             "SR": 0x00,   # 8-bit Status register
             "PC": 0x0000, # 16-bit Program counter
         }

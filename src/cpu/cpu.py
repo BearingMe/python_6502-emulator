@@ -1,11 +1,11 @@
 import json
 from time import sleep
 
-from .cpu_bus import Bus
-from .cpu_addressing_modes import AddressingModes
-from .cpu_instructions import Instructions
-from .cpu_state_handler import StateHandler
-from .cpu_debugger import Debugger
+from .bus import Bus
+from .addressing_modes import AddressingModes
+from .instructions import Instructions
+from .state_handler import StateHandler
+from .debugger import Debugger
 
 from .interfaces import AbstractCpu
 
