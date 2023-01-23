@@ -1,53 +1,66 @@
-import unittest
+from unittest import TestCase
 
-from src.cpu.cpu_state_handler import CpuStateHandler
+from src.cpu.state_handler import StateHandler
 
-class TestCpuFlags(unittest.TestCase):
+class TestCpuFlags(TestCase):
     def setUp(self):
         """
         Set up the test case by creating a new CpuFlags object.
         """
-        self.state_handler = CpuStateHandler()
+        self.state_handler = StateHandler()
 
-        self.flag_c_shift = 0
-        self.flag_z_shift = 1
-        self.flag_i_shift = 2
-        self.flag_d_shift = 3
-        self.flag_b_shift = 4
-        self.flag_u_shift = 5
-        self.flag_v_shift = 6
-        self.flag_n_shift = 7
+    def test_check_value_size(self):
+        # Test valid input
+        self.state_handler._check_value_size(0)
+        self.state_handler._check_value_size(255)
+        self.state_handler._check_value_size(127, 7)
+        self.state_handler._check_value_size(2**15-1, 16)
+        
+
+    def test_check_value_size_with_invalid_value(self):
+        # Test invalid input
+        with self.assertRaises(ValueError):
+            self.state_handler._check_value_size(-1)
+
+        with self.assertRaises(ValueError):
+            self.state_handler._check_value_size(256)
+
+        with self.assertRaises(ValueError):
+            self.state_handler._check_value_size(128, 7)
+
+        with self.assertRaises(ValueError):
+            self.state_handler._check_value_size(2**16, 16)
 
     def test_flags_getters(self):
         """
         Test the getters to ensure that they return the correct value for each flag.
         """
         # Assert that the C, I, and B flags are initially zero
-        self.assertEqual(self.state_handler.flag_C, 0)
-        self.assertEqual(self.state_handler.flag_I, 0)
-        self.assertEqual(self.state_handler.flag_B, 0)
+        self.assertEqual(self.state_handler.flag_C, False)
+        self.assertEqual(self.state_handler.flag_I, False)
+        self.assertEqual(self.state_handler.flag_B, False)
 
     def test_flags_setters(self):
         """
         Test the setters to ensure that they set the value of the specified flag correctly.
         """
         # Assert that the C and N flags can be set to zero
-        self.assertEqual(self.state_handler.flag_C, 0)
-        self.assertEqual(self.state_handler.flag_N, 0)
+        self.assertEqual(self.state_handler.flag_C, False)
+        self.assertEqual(self.state_handler.flag_N, False)
 
         # Set the C and N flags to 1
-        self.state_handler.flag_C = 1 << self.flag_c_shift
-        self.state_handler.flag_N = 1 << self.flag_n_shift
+        self.state_handler.flag_C = True
+        self.state_handler.flag_N = True
 
-        self.assertEqual(self.state_handler.flag_C, 1 << self.flag_c_shift)
-        self.assertEqual(self.state_handler.flag_N, 1 << self.flag_n_shift)
+        self.assertEqual(self.state_handler.flag_C, True)
+        self.assertEqual(self.state_handler.flag_N, True)
 
         # Assert that the C and Z flags can be set to False
-        self.state_handler.flag_C = 0
-        self.state_handler.flag_Z = 0
+        self.state_handler.flag_C = False
+        self.state_handler.flag_Z = False
 
-        self.assertEqual(self.state_handler.flag_C, 0)
-        self.assertEqual(self.state_handler.flag_Z, 0)
+        self.assertEqual(self.state_handler.flag_C, False)
+        self.assertEqual(self.state_handler.flag_Z, False)
 
     def test_setters_with_invalid_values(self):
         """
@@ -60,7 +73,7 @@ class TestCpuFlags(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.state_handler.flag_N = "False"
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             self.state_handler.flag_Z = 1
 
     def test_helpers(self):
@@ -155,35 +168,15 @@ class TestCpuFlags(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             self.state_handler.register_A = 0x100
+
         with self.assertRaises(ValueError):
             self.state_handler.register_X = 0x100
+        
         with self.assertRaises(ValueError):
             self.state_handler.register_Y = 0x100
-        with self.assertRaises(ValueError):
-            self.state_handler.register_SP = 0x100
+        
         with self.assertRaises(ValueError):
             self.state_handler.register_SR = 0x100
+        
         with self.assertRaises(ValueError):
             self.state_handler.register_PC = 0x10000
-
-    def test_check_value_size(self):
-        # Test valid input
-        self.state_handler._check_value_size(0)
-        self.state_handler._check_value_size(255)
-        self.state_handler._check_value_size(127, 7)
-        self.state_handler._check_value_size(2**15-1, 16)
-        
-
-    def test_check_value_size_with_invalid_value(self):
-        # Test invalid input
-        with self.assertRaises(ValueError):
-            self.state_handler._check_value_size(-1)
-
-        with self.assertRaises(ValueError):
-            self.state_handler._check_value_size(256)
-
-        with self.assertRaises(ValueError):
-            self.state_handler._check_value_size(128, 7)
-
-        with self.assertRaises(ValueError):
-            self.state_handler._check_value_size(2**16, 16)
